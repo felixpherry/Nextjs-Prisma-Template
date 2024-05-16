@@ -4,19 +4,9 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                echo 'building...'
-            }
-        }
-        
-        stage('testing') {
-            steps {
-                echo 'testing...'
-            }
-        }
-
-        stage('deploying') {
-            steps {
-                echo 'deploying...'
+                docker rmi nextjs-prisma-template
+                docker build -t nextjs-prisma-template .
+                docker run -d nextjs-prisma-template
             }
         }
     }
